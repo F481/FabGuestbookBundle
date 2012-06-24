@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Fab\FabGuestbookBundle\Entity\EntryRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Entry
 {
@@ -186,11 +187,27 @@ class Entry
 
     /**
      * Get updated_at
-     *
+     * 
      * @return datetime 
      */
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+    
+    /*
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->setCreatedAt(new \DateTime());
+    }
+    
+    /*
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $this->setUpdatedAt(new \DateTime());
     }
 }
