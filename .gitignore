@@ -7,9 +7,6 @@ vendor/*
 */cache/*
 web/uploads/*
 web/bundles/*
-LICENSE
-deps
-deps.lock
 
 # Configuration files
 app/config/parameters.ini
